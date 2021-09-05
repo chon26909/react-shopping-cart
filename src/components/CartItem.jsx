@@ -11,7 +11,7 @@ const CartItem = ({name,image_url,price,quantity}) => {
             </div>
             <div className="product-desc">
                 <div>{name}</div>
-                <div>ราคา {price}</div>
+                <div>ราคา {price} บาท</div>
             </div>
             <div className="quantity">
                 <button>
@@ -23,11 +23,11 @@ const CartItem = ({name,image_url,price,quantity}) => {
                 </button>
             </div>
             <div className="total-price">
-                {price * quantity}
+                {price * quantity} 
             </div>
-            <div className="remove">
+            <button className="remove">
                 <img src={remove} alt="" />
-            </div>
+            </button>
         </div>
     )
 }

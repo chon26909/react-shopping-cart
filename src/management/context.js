@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 import data from "../data/data";
 import reducer from "./reducer";
 
@@ -17,6 +16,10 @@ export const MyCartContext = () => {
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initState);
+
+  useEffect(() => {
+    dispatch({ type: "CALCULATE_TOTAL" });
+  }, [state.cart]);
 
   const removeItem = (id) => {
     dispatch({ type: "REMOVE_ITEM", payload: id });

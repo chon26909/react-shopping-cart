@@ -12,14 +12,16 @@ const reducer = (state, action) => {
       let newCart = state.cart.map((item) => {
 
         if (item.id === action.payload.id) {
+
           if (action.payload.type === "increment") {
-              console.log("increment ")
+         
             return {
               ...item,
               quantity: item.quantity < 5 ? item.quantity + 1 : item.quantity,
             };
+
           } else if (action.payload.type === "decrement") {
-              console.log("decrement")
+     
             return {
               ...item,
               quantity: item.quantity - 1,
@@ -27,11 +29,31 @@ const reducer = (state, action) => {
           }
         }
         return item;
-      }).filter((item) => item.quantity !== 0);
+      })
+      .filter((item) => item.quantity !== 0);
       return {
         ...state,
         cart: newCart
       };
+
+    case "CALCULATE_TOTAL":
+        const { total, amount } = state.cart.reduce((cartTotal, item) => {
+            const {  price, quantity } = item;
+            const itemTotal = price * quantity;
+            cartTotal.total += itemTotal;
+            cartTotal.amount += quantity;
+            return cartTotal
+        },
+        {
+            total: 0,
+            amount: 0
+        });
+
+        return {
+            ...state,
+            total: total,
+            amount: amount
+        }
 
     default:
       break;

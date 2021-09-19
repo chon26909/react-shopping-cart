@@ -2,8 +2,12 @@ import React from 'react';
 import minus from "../assets/icons/minus.svg";
 import plus from "../assets/icons/plus.svg";
 import remove from "../assets/icons/delete.svg";
+import { MyCartContext } from '../management/context';
 
-const CartItem = ({name,image_url,price,quantity}) => {
+const CartItem = ({name,image_url,price,quantity,id}) => {
+
+    const {removeItem} = MyCartContext();
+
     return (
         <div className="product">
             <div className="product-image">
@@ -25,7 +29,7 @@ const CartItem = ({name,image_url,price,quantity}) => {
             <div className="total-price">
                 {price * quantity} 
             </div>
-            <button className="remove">
+            <button className="remove" onClick={() => removeItem(id)}>
                 <img src={remove} alt="" />
             </button>
         </div>

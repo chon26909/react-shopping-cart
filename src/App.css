@@ -1,6 +1,9 @@
 body {
   font-family: "Prompt";
 }
+.text-center {
+  text-align: center;
+}
 .container {
   max-width: 900px;
   width: 100%;

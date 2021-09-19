@@ -30,7 +30,8 @@ export const CartProvider = ({ children }) => {
   };
 
   const formatNumber = (num) => {
-      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1,');
+      const _format = num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1,')
+      return _format;
   }
 
   return (

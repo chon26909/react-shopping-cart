@@ -4,7 +4,7 @@ const reducer = (state, action) => {
       const id = action.payload;
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id != id),
+        cart: state.cart.filter((item) => item.id !== id),
       };
 
     case "TOGGLE_QUANTITY":

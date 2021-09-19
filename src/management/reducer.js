@@ -37,17 +37,19 @@ const reducer = (state, action) => {
       };
 
     case "CALCULATE_TOTAL":
-        const { total, amount } = state.cart.reduce((cartTotal, item) => {
-            const {  price, quantity } = item;
-            const itemTotal = price * quantity;
-            cartTotal.total += itemTotal;
-            cartTotal.amount += quantity;
-            return cartTotal
-        },
-        {
+
+        const initialSum = {
             total: 0,
             amount: 0
-        });
+        }
+
+        const { total, amount } = state.cart.reduce((sum, item) => {
+            const { price, quantity } = item;
+            const itemTotal = price * quantity;
+            sum.total += itemTotal;
+            sum.amount += quantity;
+            return sum
+        }, initialSum);
 
         return {
             ...state,

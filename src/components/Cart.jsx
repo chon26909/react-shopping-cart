@@ -2,7 +2,7 @@ import React from "react";
 import { MyCartContext } from "../management/context";
 import CartItem from "./CartItem";
 const Cart = () => {
-  const { cart, total } = MyCartContext();
+  const { cart, total,formatNumber } = MyCartContext();
   if (cart.length === 0) {
     return (
       <div className="container">
@@ -21,7 +21,7 @@ const Cart = () => {
           })}
           <hr />
           <div className="footer">
-            ยอดรวม <strong>{total}</strong> บาท
+            ยอดชำระทั้งสิ้น <strong>{formatNumber(total)}</strong> บาท
           </div>
         </div>
       </div>

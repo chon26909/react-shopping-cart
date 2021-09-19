@@ -29,8 +29,12 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: "TOGGLE_QUANTITY", payload: { id, type } });
   };
 
+  const formatNumber = (num) => {
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1,');
+  }
+
   return (
-    <CartContext.Provider value={{ ...state, removeItem, toggleQuantity }}>
+    <CartContext.Provider value={{ ...state, removeItem, toggleQuantity,formatNumber }}>
       {children}
     </CartContext.Provider>
   );

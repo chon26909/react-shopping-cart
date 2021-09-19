@@ -6,7 +6,7 @@ import { MyCartContext } from '../management/context';
 
 const CartItem = ({name,image_url,price,quantity,id}) => {
 
-    const {removeItem, toggleQuantity} = MyCartContext();
+    const {removeItem, toggleQuantity,formatNumber} = MyCartContext();
 
     return (
         <div className="product">
@@ -15,7 +15,7 @@ const CartItem = ({name,image_url,price,quantity,id}) => {
             </div>
             <div className="product-desc">
                 <div>{name}</div>
-                <div>ราคา {price} บาท</div>
+                <div>ราคา {formatNumber(price)} บาท</div>
             </div>
             <div className="quantity">
                 <button onClick={() => toggleQuantity(id,"increment")}>
@@ -27,7 +27,7 @@ const CartItem = ({name,image_url,price,quantity,id}) => {
                 </button>
             </div>
             <div className="total-price">
-                {price * quantity} 
+                {formatNumber(price * quantity)} 
             </div>
             <button className="remove" onClick={() => removeItem(id)}>
                 <img src={remove} alt="" />

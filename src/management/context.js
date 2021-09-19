@@ -12,19 +12,23 @@ const initState = {
 export const CartContext = createContext();
 
 export const MyCartContext = () => {
-    return useContext(CartContext);
-}
+  return useContext(CartContext);
+};
 
-export const CartProvider = ({children}) => {
-    const [state, dispatch] = useReducer(reducer, initState);
+export const CartProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initState);
 
-    const removeItem = (id) => {
-        dispatch( { type:"REMOVE_ITEM", payload: id } )
-    } 
+  const removeItem = (id) => {
+    dispatch({ type: "REMOVE_ITEM", payload: id });
+  };
 
-    return (
-        <CartContext.Provider value={{...state, removeItem}}>
-            {children}
-        </CartContext.Provider>
-    )
+  const toggleQuantity = (id, type) => {
+    dispatch({ type: "TOGGLE_QUANTITY", payload: { id, type } });
+  };
+
+  return (
+    <CartContext.Provider value={{ ...state, removeItem, toggleQuantity }}>
+      {children}
+    </CartContext.Provider>
+  );
 };
